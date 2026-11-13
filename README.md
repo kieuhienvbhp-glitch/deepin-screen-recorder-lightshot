@@ -1,3 +1,5 @@
+> **Bản phím tắt kiểu Lightshot, giao diện tiếng Việt** – xem [README.vi.md](README.vi.md) để biết các thay đổi, cách cài và tải file `.deb` ở mục [Releases](https://github.com/kieuhienvbhp-glitch/deepin-screen-recorder-lightshot/releases).
+
 # Deepin Screen Recorder
 
 This is default screen recorder application for Deepin.
