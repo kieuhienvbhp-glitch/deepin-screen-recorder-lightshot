@@ -1,4 +1,25 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="vi">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="vi">
+<context>
+    <name>AIAssistantWidget</name>
+    <message>
+        <source>Explain</source>
+        <translation>Giải thích</translation>
+    </message>
+    <message>
+        <source>Summary</source>
+        <translation>Tóm tắt</translation>
+    </message>
+    <message>
+        <source>Translate</source>
+        <translation>Dịch</translation>
+    </message>
+    <message>
+        <source>Ask AI</source>
+        <translation>Hỏi AI</translation>
+    </message>
+</context>
 <context>
     <name>CountdownTooltip</name>
     <message>
@@ -16,7 +37,7 @@ hoặc nhấn phím tắt lại để dừng ghi hình</translation>
     <name>IconWidget</name>
     <message>
         <source>Screenshot</source>
-        <translation>Bản chụp màn hình</translation>
+        <translation>Chụp màn hình</translation>
     </message>
     <message>
         <source>Recording</source>
@@ -26,12 +47,12 @@ hoặc nhấn phím tắt lại để dừng ghi hình</translation>
 <context>
     <name>MainToolWidget</name>
     <message>
-        <source>Record</source>
-        <translation>Ghi hình</translation>
+        <source>Close (Esc)</source>
+        <translation>Đóng (Esc)</translation>
     </message>
     <message>
-        <source>Screenshot</source>
-        <translation>Bản chụp màn hình</translation>
+        <source>Copy to clipboard (Enter)</source>
+        <translation>Chép vào bảng tạm (Enter)</translation>
     </message>
 </context>
 <context>
@@ -42,7 +63,7 @@ hoặc nhấn phím tắt lại để dừng ghi hình</translation>
     </message>
     <message>
         <source>Save failed. Please save it in your home directory.</source>
-        <translation>Lưu không thành công. Vui lòng lưu vào thư mục nhà của bạn.</translation>
+        <translation>Lưu thất bại. Vui lòng lưu vào thư mục cá nhân.</translation>
     </message>
     <message>
         <source>View</source>
@@ -50,7 +71,7 @@ hoặc nhấn phím tắt lại để dừng ghi hình</translation>
     </message>
     <message>
         <source>Screenshot finished</source>
-        <translation>Bản chụp màn hình đã hoàn tất</translation>
+        <translation>Đã chụp màn hình xong</translation>
     </message>
     <message>
         <source>PNG (*.png);;JPEG (*.jpg *.jpeg);;BMP (*.bmp)</source>
@@ -82,7 +103,7 @@ hoặc nhấn phím tắt lại để dừng ghi hình</translation>
     </message>
     <message>
         <source>Clipboard</source>
-        <translation>Dán vào clipboard</translation>
+        <translation>Bảng tạm</translation>
     </message>
     <message>
         <source>Saving the screen recording file, please wait...</source>
@@ -90,20 +111,15 @@ hoặc nhấn phím tắt lại để dừng ghi hình</translation>
     </message>
     <message>
         <source>As the window effect is disabled during the process, the recording has to be stopped</source>
-        <translation>Do hiệu ứng cửa sổ bị vô hiệu hóa trong quá trình này, ghi hình phải
-được dừng</translation>
+        <translation>Do hiệu ứng cửa sổ bị tắt trong quá trình này, phải dừng ghi hình</translation>
     </message>
     <message>
         <source>Screenshot</source>
-        <translation>Bản chụp màn hình</translation>
-    </message>
-    <message>
-        <source>Screenshot failed.</source>
-        <translation>Bản chụp màn hình thất bại.</translation>
+        <translation>Ảnh chụp màn hình</translation>
     </message>
     <message>
         <source>Scrollshot</source>
-        <translation>Cuộn chụp</translation>
+        <translation>Chụp cuộn</translation>
     </message>
     <message>
         <source>Pin Screenshots</source>
@@ -119,7 +135,7 @@ hoặc nhấn phím tắt lại để dừng ghi hình</translation>
     </message>
     <message>
         <source>Screenshot finished and copy to clipboard</source>
-        <translation>Bản chụp màn hình đã hoàn tất và sao chép vào clipboard</translation>
+        <translation>Đã chụp màn hình và chép vào bảng tạm</translation>
     </message>
 </context>
 <context>
@@ -138,6 +154,33 @@ hoặc nhấn phím tắt lại để dừng ghi hình</translation>
     </message>
 </context>
 <context>
+    <name>PinSaveMenuManager</name>
+    <message>
+        <source>Each inquiry</source>
+        <translation>Hỏi mỗi lần lưu</translation>
+    </message>
+    <message>
+        <source>Specified Location</source>
+        <translation>Vị trí chỉ định</translation>
+    </message>
+    <message>
+        <source>Desktop</source>
+        <translation>Màn hình nền</translation>
+    </message>
+    <message>
+        <source>Pictures</source>
+        <translation>Hình ảnh</translation>
+    </message>
+    <message>
+        <source>Set a path on save</source>
+        <translation>Chọn đường dẫn khi lưu</translation>
+    </message>
+    <message>
+        <source>Change the path on save</source>
+        <translation>Đổi đường dẫn khi lưu</translation>
+    </message>
+</context>
+<context>
     <name>QObject</name>
     <message>
         <source>Pin Screenshots</source>
@@ -148,22 +191,22 @@ hoặc nhấn phím tắt lại để dừng ghi hình</translation>
     <name>QuickPanelWidget</name>
     <message>
         <source>Screenshot</source>
-        <translation>Màn hình chụp</translation>
+        <translation>Chụp ảnh</translation>
     </message>
     <message>
         <source>Record</source>
-        <translation>Ghi lại</translation>
+        <translation>Ghi hình</translation>
     </message>
 </context>
 <context>
     <name>RecordIconWidget</name>
     <message>
         <source>Screenshot</source>
-        <translation>Màn hình chụp</translation>
+        <translation>Chụp màn hình</translation>
     </message>
     <message>
         <source>Recording</source>
-        <translation>Đang ghi lại</translation>
+        <translation>Đang ghi hình</translation>
     </message>
 </context>
 <context>
@@ -174,7 +217,7 @@ hoặc nhấn phím tắt lại để dừng ghi hình</translation>
     </message>
     <message>
         <source>Recording finished</source>
-        <translation>Ghi lại đã hoàn thành</translation>
+        <translation>Đã ghi hình xong</translation>
     </message>
     <message>
         <source>Saved to %1</source>
@@ -182,11 +225,38 @@ hoặc nhấn phím tắt lại để dừng ghi hình</translation>
     </message>
     <message>
         <source>Record</source>
-        <translation>Ghi lại</translation>
+        <translation>Ghi hình</translation>
     </message>
     <message>
         <source>Open Folder</source>
         <translation>Mở thư mục</translation>
+    </message>
+</context>
+<context>
+    <name>SaveMenuManager</name>
+    <message>
+        <source>Each inquiry</source>
+        <translation>Hỏi mỗi lần lưu</translation>
+    </message>
+    <message>
+        <source>Specified location</source>
+        <translation>Vị trí chỉ định</translation>
+    </message>
+    <message>
+        <source>Desktop</source>
+        <translation>Màn hình nền</translation>
+    </message>
+    <message>
+        <source>Pictures</source>
+        <translation>Hình ảnh</translation>
+    </message>
+    <message>
+        <source>Select a location when saving</source>
+        <translation>Chọn nơi lưu mỗi lần lưu</translation>
+    </message>
+    <message>
+        <source>Update the location when saving</source>
+        <translation>Đổi nơi lưu khi lưu</translation>
     </message>
 </context>
 <context>
@@ -200,7 +270,7 @@ hoặc nhấn phím tắt lại để dừng ghi hình</translation>
     <name>ScrollShotTip</name>
     <message>
         <source>Get help.</source>
-        <translation>Nhận giúp đỡ.</translation>
+        <translation>Xem trợ giúp.</translation>
     </message>
     <message>
         <source>Failed to take a continuous screenshot.</source>
@@ -354,15 +424,15 @@ hoặc nhấn phím tắt lại để dừng ghi hình</translation>
     </message>
     <message>
         <source>Keystroke</source>
-        <translation>Phím nhấn</translation>
+        <translation>Phím bấm</translation>
     </message>
     <message>
         <source>Webcam</source>
-        <translation>Máy quay</translation>
+        <translation>Camera</translation>
     </message>
     <message>
         <source>Start recording</source>
-        <translation>Bắt đầu ghi lại</translation>
+        <translation>Bắt đầu ghi hình</translation>
     </message>
     <message>
         <source>Options</source>
@@ -370,7 +440,7 @@ hoặc nhấn phím tắt lại để dừng ghi hình</translation>
     </message>
     <message>
         <source>Start/Recording</source>
-        <translation>Bắt đầu ghi lại</translation>
+        <translation>Bắt đầu/Ghi hình</translation>
     </message>
     <message>
         <source>Mouse</source>
@@ -386,11 +456,11 @@ hoặc nhấn phím tắt lại để dừng ghi hình</translation>
     </message>
     <message>
         <source>Scrollshot</source>
-        <translation>Scrollshot</translation>
+        <translation>Chụp cuộn</translation>
     </message>
     <message>
         <source>Pin screenshots</source>
-        <translation>Ghim ảnh chụp màn hình</translation>
+        <translation>Ghim ảnh chụp</translation>
     </message>
     <message>
         <source>Start OCR</source>
@@ -398,18 +468,18 @@ hoặc nhấn phím tắt lại để dừng ghi hình</translation>
     </message>
     <message>
         <source>Start scrollshot</source>
-        <translation>Bắt đầu scrollshot</translation>
+        <translation>Bắt đầu chụp cuộn</translation>
     </message>
     <message>
         <source>Arrow</source>
-        <translation>Đường dẫn</translation>
+        <translation>Mũi tên</translation>
     </message>
 </context>
 <context>
     <name>ShotStartPlugin</name>
     <message>
         <source>Screenshot</source>
-        <translation>Bản chụp màn hình</translation>
+        <translation>Chụp màn hình</translation>
     </message>
 </context>
 <context>
@@ -453,27 +523,18 @@ Nhấn và giữ Shift để vẽ đường thẳng</translation>
     </message>
 </context>
 <context>
-    <name>StartTooltip</name>
-    <message>
-        <source>Click or drag to
-select the area to record</source>
-        <translation>Nhấp hoặc kéo để
-chọn khu vực ghi hình</translation>
-    </message>
-</context>
-<context>
     <name>SubToolWidget</name>
     <message>
         <source>Show keystroke (K)</source>
-        <translation>Hiển thị phím tắt (K)</translation>
+        <translation>Hiện phím bấm (K)</translation>
     </message>
     <message>
         <source>Hide Keystroke (K)</source>
-        <translation>Ẩn phím tắt (K)</translation>
+        <translation>Ẩn phím bấm (K)</translation>
     </message>
     <message>
         <source>Show Keystroke (K)</source>
-        <translation>Hiển thị phím tắt (K)</translation>
+        <translation>Hiện phím bấm (K)</translation>
     </message>
     <message>
         <source>Turn on camera (C)</source>
@@ -485,7 +546,7 @@ chọn khu vực ghi hình</translation>
     </message>
     <message>
         <source>Screenshot</source>
-        <translation>Bản chụp màn hình</translation>
+        <translation>Chụp ảnh</translation>
     </message>
     <message>
         <source>Settings</source>
@@ -494,10 +555,6 @@ chọn khu vực ghi hình</translation>
     <message>
         <source>Settings (F3)</source>
         <translation>Cài đặt (F3)</translation>
-    </message>
-    <message>
-        <source>Format:</source>
-        <translation>Định dạng:</translation>
     </message>
     <message>
         <source>GIF</source>
@@ -514,10 +571,6 @@ chọn khu vực ghi hình</translation>
     <message>
         <source>webm</source>
         <translation>webm</translation>
-    </message>
-    <message>
-        <source>FPS:</source>
-        <translation>Tần số khung hình:</translation>
     </message>
     <message>
         <source>5 fps</source>
@@ -557,11 +610,11 @@ chọn khu vực ghi hình</translation>
     </message>
     <message>
         <source>Show pointer</source>
-        <translation>Hiển thị con trỏ</translation>
+        <translation>Hiện con trỏ chuột</translation>
     </message>
     <message>
         <source>Show click</source>
-        <translation>Hiển thị cú click</translation>
+        <translation>Hiện cú nhấp chuột</translation>
     </message>
     <message>
         <source>Save to</source>
@@ -569,23 +622,11 @@ chọn khu vực ghi hình</translation>
     </message>
     <message>
         <source>Desktop</source>
-        <translation>Bàn làm việc</translation>
+        <translation>Màn hình nền</translation>
     </message>
     <message>
         <source>Videos</source>
         <translation>Video</translation>
-    </message>
-    <message>
-        <source>Rectangle (R)
-Press and hold Shift to draw a square</source>
-        <translation>Hình chữ nhật (R)
-Nhấn và giữ Shift để vẽ hình vuông</translation>
-    </message>
-    <message>
-        <source>Ellipse (O)
-Press and hold Shift to draw a circle</source>
-        <translation>Hình elip (O)
-Nhấn và giữ Shift để vẽ hình tròn</translation>
     </message>
     <message>
         <source>Line (L)
@@ -596,7 +637,7 @@ Nhấn và giữ Shift để vẽ đường dọc hoặc ngang</translation>
     <message>
         <source>Arrow (X)
 Press and hold Shift to draw a vertical or horizontal arrow</source>
-        <translation>Đường mũi tên (X)
+        <translation>Mũi tên (X)
 Nhấn và giữ Shift để vẽ mũi tên dọc hoặc ngang</translation>
     </message>
     <message>
@@ -605,23 +646,23 @@ Nhấn và giữ Shift để vẽ mũi tên dọc hoặc ngang</translation>
     </message>
     <message>
         <source>Blur (B)</source>
-        <translation>Mờ (B)</translation>
+        <translation>Làm mờ (B)</translation>
     </message>
     <message>
         <source>Text (T)</source>
-        <translation>Text (T)</translation>
+        <translation>Văn bản (T)</translation>
     </message>
     <message>
         <source>Scrollshot (Alt+I）</source>
-        <translation>Scrollshot (Alt+I)</translation>
+        <translation>Chụp cuộn (Alt+I)</translation>
     </message>
     <message>
         <source>Extract text (Alt+O）</source>
-        <translation>Trích xuất text (Alt+O)</translation>
+        <translation>Trích xuất văn bản (Alt+O)</translation>
     </message>
     <message>
         <source>Pin screenshots (Alt+P）</source>
-        <translation>Ghim màn hình chụp (Alt+P)</translation>
+        <translation>Ghim ảnh chụp (Alt+P)</translation>
     </message>
     <message>
         <source>Undo (Ctrl+Z)</source>
@@ -629,27 +670,11 @@ Nhấn và giữ Shift để vẽ mũi tên dọc hoặc ngang</translation>
     </message>
     <message>
         <source>Record</source>
-        <translation>Ghi âm</translation>
-    </message>
-    <message>
-        <source>Clipboard</source>
-        <translation>Dán</translation>
-    </message>
-    <message>
-        <source>Pictures</source>
-        <translation>Hình ảnh</translation>
-    </message>
-    <message>
-        <source>Folder</source>
-        <translation>Thư mục</translation>
-    </message>
-    <message>
-        <source>Set a path on save</source>
-        <translation>Chọn đường dẫn khi lưu</translation>
+        <translation>Ghi hình</translation>
     </message>
     <message>
         <source>Change the path on save</source>
-        <translation>Thay đổi đường dẫn khi lưu</translation>
+        <translation>Đổi đường dẫn khi lưu</translation>
     </message>
     <message>
         <source>Format</source>
@@ -681,7 +706,7 @@ Nhấn và giữ Shift để vẽ mũi tên dọc hoặc ngang</translation>
     </message>
     <message>
         <source>Border</source>
-        <translation>Kích thước viền</translation>
+        <translation>Viền</translation>
     </message>
     <message>
         <source>Device</source>
@@ -689,7 +714,49 @@ Nhấn và giữ Shift để vẽ mũi tên dọc hoặc ngang</translation>
     </message>
     <message>
         <source>Extract Text</source>
-        <translation>Chiết xuất văn bản</translation>
+        <translation>Trích xuất văn bản</translation>
+    </message>
+    <message>
+        <source>FPS</source>
+        <translation>Khung hình/giây</translation>
+    </message>
+    <message>
+        <source>Geometric Tools (R)
+Hold down Shift to draw squares or circles.</source>
+        <translation>Công cụ hình học (R)
+Giữ Shift để vẽ hình vuông hoặc hình tròn.</translation>
+    </message>
+    <message>
+        <source>AI Screenshot (A)</source>
+        <translation>Chụp ảnh bằng AI (A)</translation>
+    </message>
+    <message>
+        <source>Save to local</source>
+        <translation>Lưu vào máy</translation>
+    </message>
+    <message>
+        <source>Save to Desktop</source>
+        <translation>Lưu vào Màn hình nền</translation>
+    </message>
+    <message>
+        <source>Save to Pictures</source>
+        <translation>Lưu vào Hình ảnh</translation>
+    </message>
+    <message>
+        <source>Update the location when saving</source>
+        <translation>Đổi nơi lưu khi lưu</translation>
+    </message>
+    <message>
+        <source>Select a location when saving</source>
+        <translation>Chọn nơi lưu mỗi lần lưu</translation>
+    </message>
+    <message>
+        <source>Save to %1</source>
+        <translation>Lưu vào %1</translation>
+    </message>
+    <message>
+        <source>Specified Location</source>
+        <translation>Vị trí chỉ định</translation>
     </message>
 </context>
 <context>
@@ -700,7 +767,11 @@ Nhấn và giữ Shift để vẽ mũi tên dọc hoặc ngang</translation>
     </message>
     <message>
         <source>OK (Enter)</source>
-        <translation>Đồng ý (Enter)</translation>
+        <translation>Xong (Enter)</translation>
+    </message>
+    <message>
+        <source>Copy to clipboard (Enter)</source>
+        <translation>Chép vào bảng tạm (Enter)</translation>
     </message>
 </context>
 <context>
@@ -714,18 +785,11 @@ Nhấn và giữ Shift để vẽ mũi tên dọc hoặc ngang</translation>
     <name>Utils</name>
     <message>
         <source>Screen recording is not supported at present</source>
-        <translation>Ghi hình màn hình không được hỗ trợ tại thời điểm này</translation>
+        <translation>Hiện chưa hỗ trợ ghi hình màn hình</translation>
     </message>
     <message>
         <source>Exit</source>
         <translation>Thoát</translation>
-    </message>
-</context>
-<context>
-    <name>VoiceRecordProcess</name>
-    <message>
-        <source>New recording</source>
-        <translation>Ghi âm mới</translation>
     </message>
 </context>
 </TS>

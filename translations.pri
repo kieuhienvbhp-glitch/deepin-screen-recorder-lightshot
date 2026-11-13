@@ -3,6 +3,7 @@ TRANSLATIONS += \
     $$PWD/translations/deepin-screen-recorder_en_US.ts \
     $$PWD/translations/deepin-screen-recorder_zh_HK.ts \
     $$PWD/translations/deepin-screen-recorder_zh_TW.ts \
+    $$PWD/translations/deepin-screen-recorder_vi.ts \
     $$PWD/translations/deepin-screen-recorder_ar.ts \
     $$PWD/translations/deepin-screen-recorder_br.ts \
     $$PWD/translations/deepin-screen-recorder_ca.ts \

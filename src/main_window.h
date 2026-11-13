@@ -525,6 +525,8 @@ public slots:
     void changeShotToolEvent(const QString &func);
     void saveScreenShot();
     void saveScreenShotToClipboardOnly();
+    // Phím tắt kiểu Lightshot: chuyển ảnh chụp cho chương trình phụ dsr-share (upload / lens / print)
+    void shareScreenShot(const QString &action);
     void saveScreenShotToFile();
     void onAiAssistantSelected(int func);
     void prepareScreenshot();

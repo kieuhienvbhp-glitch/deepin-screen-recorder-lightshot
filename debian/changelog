@@ -1,3 +1,37 @@
+deepin-screen-recorder (6.6.39+lightshot4) unstable; urgency=medium
+
+  * Dịch nốt 33 câu còn thiếu: chú thích khi trỏ chuột vào nút lưu (Lưu vào máy,
+    Lưu vào Màn hình nền, Lưu vào Hình ảnh, Vị trí chỉ định...), Chép vào bảng tạm,
+    công cụ hình học, chụp ảnh bằng AI, trợ lý AI, gợi ý chọn vùng ghi hình.
+  * Thống nhất từ ngữ với hệ thống: Bảng tạm, Màn hình nền, Ghi hình, Làm mờ.
+
+ -- Neo Vn <vnkey@localhost>  Fri, 13 Nov 2026 22:30:00 +0700
+
+deepin-screen-recorder (6.6.39+lightshot3) unstable; urgency=medium
+
+  * Rút gọn chữ trong bảng cài đặt nhanh trên Dock: Chụp ảnh, Ghi hình (hết bị lẹm).
+  * Sửa "Màn hình chụp" thành "Chụp màn hình".
+
+ -- Neo Vn <vnkey@localhost>  Fri, 13 Nov 2026 21:00:00 +0700
+
+deepin-screen-recorder (6.6.39+lightshot2) unstable; urgency=medium
+
+  * Bật bản dịch tiếng Việt (đã có sẵn nhưng bị thiếu trong translations.pri).
+  * Sửa một số câu dịch sai: Mũi tên, Bộ nhớ tạm, Chụp cuộn, Văn bản…
+
+ -- Neo Vn <vnkey@localhost>  Fri, 13 Nov 2026 20:30:00 +0700
+
+deepin-screen-recorder (6.6.39+lightshot1) unstable; urgency=medium
+
+  * Phím tắt kiểu Lightshot khi chụp màn hình:
+    - Ctrl+C: chép ảnh vào bộ nhớ tạm rồi đóng.
+    - Ctrl+S: lưu ảnh như nút Lưu (trước đây chỉ chép vào bộ nhớ tạm).
+    - Ctrl+D: tải ảnh lên catbox.moe, chép link chia sẻ vào bộ nhớ tạm.
+    - Ctrl+P: in ảnh.
+    - Ctrl+G: tìm ảnh tương tự bằng Google Lens.
+
+ -- Neo Vn <vnkey@localhost>  Fri, 13 Nov 2026 19:30:00 +0700
+
 deepin-screen-recorder (6.6.39) unstable; urgency=medium
 
   * test: add basic screenshot and recording AT suite

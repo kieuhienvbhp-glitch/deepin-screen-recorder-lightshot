@@ -451,4 +451,8 @@ equals(QT_MAJOR_VERSION, 6) {
     DCONFIG_OVERRIDE_FILES += treeland_splash
 }
 
-INSTALLS += target icon desktop translations dbus_service manual_dir
+# Chương trình phụ cho phím tắt kiểu Lightshot (Ctrl+D tải lên, Ctrl+P in, Ctrl+G Google Lens)
+dsr_share.files = $$PWD/share/dsr-share
+dsr_share.path = $$INSTROOT$$PREFIX/libexec/deepin-screen-recorder
+
+INSTALLS += target icon desktop translations dbus_service manual_dir dsr_share

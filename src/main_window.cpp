@@ -5,6 +5,11 @@
 
 // #include <dscreenwindowsutil.h>
 
+// Chương trình phụ cho phím tắt kiểu Lightshot (Ctrl+D / Ctrl+P / Ctrl+G)
+#ifndef DSR_SHARE_PATH
+#define DSR_SHARE_PATH "/usr/libexec/deepin-screen-recorder/dsr-share"
+#endif
+
 #include "capture.h"
 
 #include <private/qwaylandwindow_p.h>
@@ -56,6 +61,10 @@ extern "C" {
 #include <QPainter>
 #include <QDebug>
 #include <QProcess>
+#include <QFile>
+#include <QDateTime>
+#include <QDir>
+#include <QStandardPaths>
 #include <QMouseEvent>
 #include <QClipboard>
 #include <QFileDialog>
@@ -1304,6 +1313,11 @@ void MainWindow::initSaveShortcut()
     QShortcut *enterSC = new QShortcut(QKeySequence(Qt::Key_Enter), this);
     // 截图模式/滚动模式 保存截图
     QShortcut *saveShotSC = new QShortcut(QKeySequence("Ctrl+S"), this);
+    // Phím tắt kiểu Lightshot: chép ảnh, tải lên lấy link, in, tìm ảnh tương tự trên Google
+    QShortcut *copyShotSC = new QShortcut(QKeySequence("Ctrl+C"), this);
+    QShortcut *uploadShotSC = new QShortcut(QKeySequence("Ctrl+D"), this);
+    QShortcut *printShotSC = new QShortcut(QKeySequence("Ctrl+P"), this);
+    QShortcut *lensShotSC = new QShortcut(QKeySequence("Ctrl+G"), this);
     // 截图模式/录屏模式（未做穿透）/滚动模式 退出
     QShortcut *escSC = new QShortcut(QKeySequence("Escape"), this);
     // 录屏模式 停止录屏 
@@ -1344,9 +1358,19 @@ void MainWindow::initSaveShortcut()
     connect(saveShotSC, &QShortcut::activated, this, [=] {
         if (status::shot == m_functionType || status::scrollshot == m_functionType) {
             qCDebug(dsrApp) << "shortcut : saveShotSC (key: ctrl+s)";
+            // Giống Lightshot: Ctrl+S lưu ảnh như nút Lưu, còn chép vào bộ nhớ tạm là Ctrl+C
+            saveScreenShot();
+        }
+    });
+    connect(copyShotSC, &QShortcut::activated, this, [=] {
+        if (status::shot == m_functionType || status::scrollshot == m_functionType) {
+            qCDebug(dsrApp) << "shortcut : copyShotSC (key: ctrl+c)";
             saveScreenShotToClipboardOnly();
         }
     });
+    connect(uploadShotSC, &QShortcut::activated, this, [=] { shareScreenShot("upload"); });
+    connect(printShotSC, &QShortcut::activated, this, [=] { shareScreenShot("print"); });
+    connect(lensShotSC, &QShortcut::activated, this, [=] { shareScreenShot("lens"); });
     // 截图模式/录屏模式（未做穿透）/滚动模式 退出
     connect(escSC, &QShortcut::activated, this, [=] {
         // 只有正在录屏时，此快捷键无法退出程序
@@ -4145,6 +4169,30 @@ void MainWindow::saveScreenShotToClipboardOnly()
     sendNotify(SaveAction::SaveToClipboard, tr("Clipboard"), true);
     
     // 调用公共函数完成截图
+    finishScreenshot();
+}
+
+// Phím tắt kiểu Lightshot (Ctrl+D / Ctrl+P / Ctrl+G): lưu ảnh ra file tạm rồi giao cho
+// chương trình phụ dsr-share chạy độc lập, vì app sẽ thoát ngay sau khi chụp xong.
+void MainWindow::shareScreenShot(const QString &action)
+{
+    if (status::shot != m_functionType && status::scrollshot != m_functionType)
+        return;
+    qCInfo(dsrApp) << __FUNCTION__ << action;
+
+    prepareScreenshot();
+
+    const QString tmpPath = QDir(QStandardPaths::writableLocation(QStandardPaths::TempLocation))
+                                .filePath(QString("deepin-screenshot-%1.png").arg(QDateTime::currentMSecsSinceEpoch()));
+    if (m_resultPixmap.save(tmpPath, "PNG")) {
+        if (!QProcess::startDetached(QStringLiteral(DSR_SHARE_PATH), {action, tmpPath})) {
+            qCWarning(dsrApp) << "Cannot start" << DSR_SHARE_PATH;
+            QFile::remove(tmpPath);
+        }
+    } else {
+        qCWarning(dsrApp) << "Cannot write temporary screenshot" << tmpPath;
+    }
+
     finishScreenshot();
 }
 

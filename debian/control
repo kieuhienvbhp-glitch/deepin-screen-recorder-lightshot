@@ -60,6 +60,7 @@ Build-Depends: debhelper,
  libprocps-dev | libproc2-dev,
  portaudio19-dev,
  libv4l-dev
+Rules-Requires-Root: no
 Standards-Version: 3.9.8
 Homepage: https://github.com/linuxdeepin/deepin-screen-recorder
 
@@ -68,7 +69,11 @@ Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}, 
  libgstreamer1.0-0 (>= 1.0.0), 
  ffmpeg, 
- libportaudio2
+ libportaudio2,
+ python3,
+ python3-pyqt5,
+ libnotify-bin,
+ xdg-utils
 Recommends: dde-session-ui,
  deepin-ocr,
  gstreamer1.0-plugins-bad,

@@ -1,0 +1,160 @@
+#!/usr/bin/python3 -I
+# SPDX-License-Identifier: GPL-3.0-or-later
+"""
+Chương trình phụ của deepin-screen-recorder cho các phím tắt kiểu Lightshot.
+
+App chụp màn hình thoát ngay sau khi lưu ảnh, nên các việc mất thời gian
+(tải ảnh lên mạng, hộp thoại in) chạy ở đây, như một tiến trình độc lập.
+
+    dsr-share upload FILE   Ctrl+D: tải ảnh lên, chép link vào bộ nhớ tạm
+    dsr-share lens FILE     Ctrl+G: tải ảnh lên rồi tìm ảnh tương tự bằng Google Lens
+    dsr-share print FILE    Ctrl+P: in ảnh
+
+FILE là ảnh tạm do app tạo ra; chương trình xóa nó khi xong việc.
+"""
+
+import os
+import subprocess
+import sys
+import urllib.parse
+import urllib.request
+import uuid
+
+UPLOAD_URL = os.environ.get("DSR_SHARE_UPLOAD_URL", "https://catbox.moe/user/api.php")  # biến môi trường chỉ để thử
+LENS_URL = "https://lens.google.com/uploadbyurl?url="
+UPLOAD_TIMEOUT = 60  # giây
+CLIPBOARD_HOLD_MS = 30 * 60 * 1000  # giữ link trong bộ nhớ tạm tối đa 30 phút
+
+VI = os.environ.get("LANGUAGE", os.environ.get("LANG", "")).startswith("vi")
+TEXT = {
+    "uploading": ("Đang tải ảnh lên…", "Uploading screenshot…"),
+    "uploaded": ("Đã tải ảnh lên, link đã được chép", "Screenshot uploaded, link copied"),
+    "upload_failed": ("Không tải được ảnh lên", "Could not upload the screenshot"),
+    "lens_failed": ("Không tìm được ảnh tương tự", "Could not search for similar images"),
+    "print_title": ("In ảnh chụp màn hình", "Print screenshot"),
+}
+
+
+def t(key):
+    return TEXT[key][0 if VI else 1]
+
+
+def notify(summary, body=""):
+    try:
+        subprocess.run(
+            ["notify-send", "-a", "deepin-screen-recorder", "-i", "deepin-screenshot", summary, body],
+            check=False,
+            timeout=5,
+        )
+    except (OSError, subprocess.SubprocessError):
+        pass
+
+
+def upload(path):
+    """Tải ảnh lên catbox.moe, trả về link công khai."""
+    boundary = uuid.uuid4().hex
+    with open(path, "rb") as f:
+        data = f.read()
+    name = os.path.basename(path)
+    body = b"".join(
+        [
+            f'--{boundary}\r\nContent-Disposition: form-data; name="reqtype"\r\n\r\nfileupload\r\n'.encode(),
+            f'--{boundary}\r\nContent-Disposition: form-data; name="fileToUpload"; filename="{name}"\r\n'.encode(),
+            b"Content-Type: image/png\r\n\r\n",
+            data,
+            f"\r\n--{boundary}--\r\n".encode(),
+        ]
+    )
+    req = urllib.request.Request(
+        UPLOAD_URL,
+        data=body,
+        headers={
+            "Content-Type": f"multipart/form-data; boundary={boundary}",
+            "User-Agent": "deepin-screen-recorder",
+        },
+    )
+    with urllib.request.urlopen(req, timeout=UPLOAD_TIMEOUT) as resp:
+        link = resp.read().decode().strip()
+    if not link.startswith("https://"):
+        raise RuntimeError(link or "empty response")
+    return link
+
+
+def copy_and_hold(text):
+    """Chép vào bộ nhớ tạm. Trên X11 nội dung mất khi tiến trình sở hữu thoát, nên
+    giữ tiến trình sống tới khi có ứng dụng khác lấy bộ nhớ tạm (hoặc hết giờ)."""
+    from PyQt5.QtCore import QTimer
+    from PyQt5.QtWidgets import QApplication
+
+    app = QApplication.instance() or QApplication(sys.argv[:1])
+    clipboard = app.clipboard()
+    clipboard.setText(text)
+    clipboard.dataChanged.connect(lambda: clipboard.text() != text and app.quit())
+    QTimer.singleShot(CLIPBOARD_HOLD_MS, app.quit)
+    app.exec_()
+
+
+def do_upload(path):
+    notify(t("uploading"))
+    try:
+        link = upload(path)
+    except Exception as e:  # noqa: BLE001 - mọi lỗi mạng đều báo cho người dùng
+        notify(t("upload_failed"), str(e))
+        return 1
+    finally:
+        os.unlink(path)
+    notify(t("uploaded"), link)
+    copy_and_hold(link)
+    return 0
+
+
+def do_lens(path):
+    try:
+        link = upload(path)
+    except Exception as e:  # noqa: BLE001
+        notify(t("lens_failed"), str(e))
+        return 1
+    finally:
+        os.unlink(path)
+    subprocess.Popen(["xdg-open", LENS_URL + urllib.parse.quote(link, safe="")])
+    return 0
+
+
+def do_print(path):
+    from PyQt5.QtCore import Qt
+    from PyQt5.QtGui import QImage, QPainter
+    from PyQt5.QtPrintSupport import QPrintDialog, QPrinter
+    from PyQt5.QtWidgets import QApplication
+
+    app = QApplication(sys.argv[:1])  # noqa: F841 - cần có trước khi tạo hộp thoại
+    image = QImage(path)
+    os.unlink(path)
+    if image.isNull():
+        return 1
+    printer = QPrinter(QPrinter.HighResolution)
+    dialog = QPrintDialog(printer)
+    dialog.setWindowTitle(t("print_title"))
+    if dialog.exec_() != QPrintDialog.Accepted:
+        return 0
+    painter = QPainter(printer)
+    page = painter.viewport()
+    size = image.size().scaled(page.size(), Qt.KeepAspectRatio)
+    if size.width() > image.width():  # không phóng to ảnh nhỏ
+        size = image.size()
+    painter.setViewport(page.x(), page.y(), size.width(), size.height())
+    painter.setWindow(image.rect())
+    painter.drawImage(0, 0, image)
+    painter.end()
+    return 0
+
+
+def main():
+    actions = {"upload": do_upload, "lens": do_lens, "print": do_print}
+    if len(sys.argv) != 3 or sys.argv[1] not in actions or not os.path.isfile(sys.argv[2]):
+        print(__doc__, file=sys.stderr)
+        return 2
+    return actions[sys.argv[1]](sys.argv[2])
+
+
+if __name__ == "__main__":
+    sys.exit(main())
